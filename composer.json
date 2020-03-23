@@ -1,0 +1,24 @@
+{
+    "require": {
+        "php": ">=7.1",
+        "slim/psr7": "^0.6.0",
+        "ultra-lite/container": "^6.2",
+        "symfony/console": "^4.4",
+        "psr/container": "^1.0",
+        "psr/http-factory": "^1.0",
+        "slim/slim": "3.*",
+        "illuminate/database": "~5.1",
+        "slim/php-view": "2.0",
+        "slim/twig-view": "2.5"
+    },
+    "autoload": {
+        "psr-4": {
+          "App\\": "app",
+          "Tests\\"       :   "tests/",
+          "Controllers\\" :   "controllers/",
+          "Models\\"      :   "models/",
+          "Middlewares\\" :   "middlewares/",
+          "Helpers\\"     :   "helpers/"
+        }
+      }
+}
