@@ -1,0 +1,134 @@
+*, *:before, *:after{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.wrapper{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.container{
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+.header{
+    flex-shrink: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(36, 36, 36);
+}
+
+.header__wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auth-btns{
+    display: flex;
+}
+
+.auth-btn{
+    text-transform: uppercase;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-right: 10px;
+    color: rgb(244, 246, 247);
+    padding: 5px 0;
+}
+
+.auth-btn:last-child{
+    padding-left: 10px;
+    border-left: 1px solid #fff; 
+    margin-right: 0;
+}
+
+.main-content{
+    flex-grow: 1;
+    background-color: rgb(244, 246, 247);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal{
+    width: 100%;
+    max-width: 400px;
+    display: none;
+}
+
+.modal.active{
+    display: block;
+}
+
+.form{
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: rgb(36, 36, 36);
+    border-radius: 7px;
+}
+.form label{
+    display: block;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    font-size: 18px;
+    color: rgb(244, 246, 247);;
+    margin-bottom: 15px;
+}
+
+.form label:last-child{
+    margin-bottom: 0;
+}
+
+.form__inputs-group{
+    margin-bottom: 30px;
+}
+    
+.form__title{
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    font-size: 24px;
+    color: rgb(244, 246, 247);
+    margin-bottom: 15px;
+}
+
+.form__input{
+    padding: 8px 10px;
+    width: 100%;
+    margin-top: 10px;
+    display: block;
+}
+
+.form__button{
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 800;
+    font-size: 16px;
+    background-color: rgb(244, 246, 247);
+    border-radius: 5px;
+    color: rgb(36, 36, 36);
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
