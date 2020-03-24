@@ -17,13 +17,13 @@
     </header>
     <div class="main-content">
         <div class="modal active" id="modal-login">
-            <form class = "form" action="auth/login" method="post">
+            <form class = "form login-form">
                 <h3 class="form__title">Войти</h3>
                 <div class="form__inputs-group">
-                    <label>Логин
+                    <label class="form__label">Логин
                         <input class="form__input" required type="text" name="username">
-                    </label>
-                    <label>Пароль
+                    </label class="form__label">
+                    <label class="form__label">Пароль
                         <input class="form__input" required type="password" name="password">
                     </label>
                 </div>
@@ -31,16 +31,16 @@
             </form>
         </div>
         <div class="modal" id="modal-registration">
-            <form class = "form" action="auth/registration" method="post">
+            <form class = "form registration-form">
                 <h3 class="form__title">Зарегистрироваться</h3>
                 <div class="form__inputs-group">
-                    <label>Логин
+                    <label class="form__label">Логин
                         <input class="form__input" required type="text" name="username">
                     </label>
-                    <label>Email
+                    <label class="form__label">Email
                         <input class="form__input" required type="email" name="email">
                     </label>
-                    <label>Пароль
+                    <label class="form__label">Пароль
                         <input class="form__input" required type="password" name="password">
                     </label>
                 </div>

@@ -15,6 +15,10 @@ button{
     cursor: pointer;
 }
 
+.error{
+    color: red;
+    font-size: 14px;
+}
 .wrapper{
     height: 100vh;
     display: flex;
@@ -86,7 +90,7 @@ button{
     background-color: rgb(36, 36, 36);
     border-radius: 7px;
 }
-.form label{
+.form__label{
     display: block;
     font-family: sans-serif;
     letter-spacing: 1px;
@@ -95,7 +99,7 @@ button{
     margin-bottom: 15px;
 }
 
-.form label:last-child{
+.form__label:last-child{
     margin-bottom: 0;
 }
 
