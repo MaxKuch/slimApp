@@ -33,7 +33,7 @@ $container["HelloController"] = function ($c) {
     return new \Controllers\HelloController($c);
 };
 $container["AuthController"] = function ($c) {
-    return new \Controllers\AuthController($c);
+    return new Controllers\AuthController($c);
 };
 $container["AdminController"] = function ($c) {
     return new \Controllers\AdminController($c);

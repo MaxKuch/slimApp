@@ -9,7 +9,7 @@
             'db' => [
                 'driver' => 'mysql',
                 'host' => 'localhost',
-                'database' => 'tw_test',
+                'database' => 'test',
                 'username' => 'root',
                 'password' => '',
                 'charset'   => 'utf8',
