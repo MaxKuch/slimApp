@@ -8,5 +8,10 @@
         }
         public static function getPasswordHash($username, $password){
             return md5('pass'.md5($username.md5($password)));
-          }
+        }
+        public static function checkPassword($username, $password){
+            if(Manager::table('users')->where('username', $username)->get()->first()->password === $password)
+                return true;
+            return false;
+        }
     }

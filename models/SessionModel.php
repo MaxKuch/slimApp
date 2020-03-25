@@ -15,9 +15,6 @@
             return Manager::table('sessions')->where('session_id', $this->session_id)->get();
         }
         public static function where($field, $param){
-            return Manager::table('sessions')->where($field, $param)->get();
-        }
-        public static function update($field, $param){
-            return Manager::table('sessions')->where('session_id', $session_id)->update([$field, $param]);
+            return Manager::table('sessions')->where($field, $param);
         }
     }

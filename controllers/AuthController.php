@@ -14,31 +14,40 @@
             $this->userModel = new UserModel();
         }
 
+        public function login(Request $request, Response $response, $args){
+            $post = $request->getParsedBody();
+            $username = $post['username'];
+            $password = UserHelper::getPasswordHash($username, $post['password']);
+            if(!UserHelper::isUserHave('username',$username))
+                $errors = array('errorMessage' => 'wrong username or password', 'errorTarget' => 'login-errors');
+            if(!UserHelper::checkPassword($username, $password))
+                $errors = array('errorMessage' => 'wrong username or password', 'errorTarget' => 'login-errors');
+            if(isset($errors))
+                return json_encode($errors);
+            //return $response->withRedirect('/auth');
+        }
+
         public function registration(Request $request, Response $response, $args){
             $post = $request->getParsedBody();
             $username = $post['username'];
             $email    = $post['email'];
             $password = UserHelper::getPasswordHash($username, $post['password']);
             if(UserHelper::isUserHave('username',$username)){
-                $errors[] = "Пользователь с таким именем уже существует";
+                $errors = array('errorMessage' => 'such username already exists', 'errorTarget' => 'registration-username-error');
             }
             if(UserHelper::isUserHave('email',$email)){
-                $errors[] = "Пользователь с таким email уже существует";
+                $errors = array('errorMessage' => 'user with such email already exists', 'errorTarget' => 'registration-email-error');
             }
-            if(count($errors)>0){
-                return $response->withRedirect($this->router->pathFor('auth', [], $errors));
+            if(isset($errors)){
+                return json_encode($errors);
             }
             $newUser = new UserModel();
             $newUser->username = $username;
             $newUser->email    = $email;
             $newUser->password = $password;
             $newUser->save();
-            $session_id = md5(mt_rand().$username);
-            $user  = $username;
-            $ip_addr  = $_SERVER['REMOTE_ADDR']; 
-            $isLogin  = true;
             $session      = SessionHelper::setSession($username);
-            //$response = CookieHelper::addCookie($response, $this->cookieName, $session->session_id);
-            return $response->withRedirect('/auth');
+           // $response = CookieHelper::addCookie($response, $this->cookieName, $session->session_id);
+            //return $response->withRedirect('/auth');
         }
     }

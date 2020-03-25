@@ -17,7 +17,12 @@ $('.registration-form .form__button').click(function(e){
                 password: password
             },
             success(data){
-                alert(data)
+                $('.errors').html('')
+                $('.error').html('')
+                if(data){
+                    let error = JSON.parse(data);
+                    $(`#${error.errorTarget}`).html(error.errorMessage)
+                }
             }
         })
     }
@@ -25,7 +30,7 @@ $('.registration-form .form__button').click(function(e){
 
 $('.login-form .form__button').click(function(e){
     e.preventDefault()
-    let login = $('.login-form input[name="username"]').val()
+    let username = $('.login-form input[name="username"]').val()
     let password = $('.login-form input[name="password"]').val()
     //alert($('.login-form').valid())
     if($('.login-form').valid()){
@@ -38,7 +43,12 @@ $('.login-form .form__button').click(function(e){
                 password: password
             },
             success(data){
-                alert(data)
+                $('.errors').html('')
+                $('.error').html('')
+                if(data){
+                    let error = JSON.parse(data);
+                    $(`#${error.errorTarget}`).html(error.errorMessage)
+                }
             }
         })
     }

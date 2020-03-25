@@ -19,3 +19,7 @@ $app->get('/', function (Request $request, Response $response, array $args)
 
 
 $app->post('/auth/registration', "AuthController:registration")->add(new ControlMiddleware());
+
+$app->post('/auth/login', "AuthController:login")->add(new ControlMiddleware());
+
+//$app->get('/auth', "HelloController:hello")->add(new AuthMiddleware());

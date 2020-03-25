@@ -1,6 +1,6 @@
 {% extends 'templates/main.html' %}
 
-{% block title %}Авторизация{% endblock %}
+{% block title %}Authorization{% endblock %}
 
 {% block body %}
 <div class="wrapper">
@@ -9,42 +9,48 @@
             <div class="header__wrap">
                 <img src ="views/assets/img/logo.svg" class="logo"></img>
                 <div class="auth-btns">
-                    <button class="auth-btn modal-btn" id="login-btn">Войти</button>
-                    <button class="auth-btn modal-btn" id= "registration-btn">Регистрация</button>
+                    <button class="auth-btn modal-btn" id="login-btn">Login</button>
+                    <button class="auth-btn modal-btn" id= "registration-btn">Sign up</button>
                 </div>
             </div>
         </div>
     </header>
     <div class="main-content">
-        <div class="modal active" id="modal-login">
+        <div class="modal" id="modal-login">
+            <button class = "modal__close" id = "modal-login-close"><img src="views/assets/img/close-btn.svg"></button>
             <form class = "form login-form">
-                <h3 class="form__title">Войти</h3>
+                <h3 class="form__title">Login</h3>
                 <div class="form__inputs-group">
-                    <label class="form__label">Логин
+                    <label class="form__label">Username
                         <input class="form__input" required type="text" name="username">
                     </label class="form__label">
-                    <label class="form__label">Пароль
+                    <span class="error"></span>
+                    <label class="form__label">Password
                         <input class="form__input" required type="password" name="password">
                     </label>
                 </div>
-                <button class="form__button" type="submit">Войти</button>
+                <button class="form__button" type="submit">Login</button>
+                <span class="errors" id = "login-errors"></span>
             </form>
         </div>
         <div class="modal" id="modal-registration">
+            <button class = "modal__close" id = "modal-registration-close"><img src="views/assets/img/close-btn.svg"></button>
             <form class = "form registration-form">
-                <h3 class="form__title">Зарегистрироваться</h3>
+                <h3 class="form__title">Sign up</h3>
                 <div class="form__inputs-group">
-                    <label class="form__label">Логин
+                    <label class="form__label">Username
                         <input class="form__input" required type="text" name="username">
+                        <span class="error" id = "registration-username-error"></span>
                     </label>
                     <label class="form__label">Email
                         <input class="form__input" required type="email" name="email">
+                        <span class="error" id = "registration-email-error"></span>
                     </label>
-                    <label class="form__label">Пароль
+                    <label class="form__label">Password
                         <input class="form__input" required type="password" name="password">
                     </label>
                 </div>
-                <button class="form__button" type="submit">Зарегистрироваться</button>
+                <button class="form__button" type="submit">Sign up</button>
             </form>
         </div>
     </div>

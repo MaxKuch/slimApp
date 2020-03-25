@@ -11,7 +11,7 @@
             $password = $this->password;
             Manager::table('users')->insertGetId(['username' => $username, 'email' => $email, 'password' => $password]);
         } 
-        public function where($field, $param){
+        public static function where($field, $param){
             return Manager::table('users')->where($field, $param)->get();
         }
     }
