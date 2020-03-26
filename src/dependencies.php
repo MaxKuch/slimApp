@@ -29,8 +29,8 @@ $capsule->bootEloquent();
 $container['db'] = function ($container) use ($capsule) {
     return $capsule;
 };
-$container["HelloController"] = function ($c) {
-    return new \Controllers\HelloController($c);
+$container["ProfileController"] = function ($c) {
+    return new \Controllers\ProfileController($c);
 };
 $container["AuthController"] = function ($c) {
     return new Controllers\AuthController($c);

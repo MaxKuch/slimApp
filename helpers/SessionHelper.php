@@ -12,9 +12,9 @@
             return $session;
         }
 
-        public static function closeSession($user){
-            if(isset(SessionModel::where('user', $user)->get()->first()->user)){
-                SessionModel::where('user', $user)->update(['isLogin' => false]);
+        public static function closeSession($session_id){
+            if(isset(SessionModel::where('session_id', $session_id)->get()->first()->session_id)){
+                SessionModel::where('session_id', $session_id)->update(['isLogin' => false]);
             }
         }
     }

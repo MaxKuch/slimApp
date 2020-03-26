@@ -6,9 +6,11 @@
     use Slim\Http\Response;
     use Helpers\SessionHelper;
     use Helpers\UserHelper;
+    use Helpers\CookieHelper;
     use Illuminate\Database\Capsule\Manager;
     class AuthController extends Controller{
         private $userModel;
+        private $cookieName = "ID";
         public function __construct($di){
             parent::__construct($di);
             $this->userModel = new UserModel();
@@ -22,9 +24,14 @@
                 $errors = array('errorMessage' => 'wrong username or password', 'errorTarget' => 'login-errors');
             if(!UserHelper::checkPassword($username, $password))
                 $errors = array('errorMessage' => 'wrong username or password', 'errorTarget' => 'login-errors');
-            if(isset($errors))
-                return json_encode($errors);
-            //return $response->withRedirect('/auth');
+            if(isset($errors)){
+                throw new \Exception(json_encode($errors));
+                die();
+            }
+            $session      = \Helpers\SessionHelper::setSession($username);
+            $response = CookieHelper::addCookie($response,$this->cookieName, $session->session_id);
+            $response = $response->withRedirect('/profile');
+            return $response;
         }
 
         public function registration(Request $request, Response $response, $args){
@@ -39,7 +46,8 @@
                 $errors = array('errorMessage' => 'user with such email already exists', 'errorTarget' => 'registration-email-error');
             }
             if(isset($errors)){
-                return json_encode($errors);
+                throw new \Exception(json_encode($errors));
+                die();
             }
             $newUser = new UserModel();
             $newUser->username = $username;
@@ -47,7 +55,14 @@
             $newUser->password = $password;
             $newUser->save();
             $session      = SessionHelper::setSession($username);
-           // $response = CookieHelper::addCookie($response, $this->cookieName, $session->session_id);
-            //return $response->withRedirect('/auth');
+            $response = CookieHelper::addCookie($response, $this->cookieName, $session->session_id);
+            return $response->withRedirect('/profile');
+        }
+
+        public function logout(Request $request, Response $response, $args){
+            $cookie = $request->getCookieParams()[$this->cookieName];
+            CookieHelper::deleteCookie($response, $this->cookieName);
+            SessionHelper::closeSession($cookie);
+            return $response->withRedirect('/');
         }
     }

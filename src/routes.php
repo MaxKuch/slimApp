@@ -12,7 +12,7 @@ use Middlewares\ControlMiddleware;
 // })->setName('auth')->add(new ControlMiddleware()); 
 $app->get('/', function (Request $request, Response $response, array $args)
 {
-    $errors = $request->getQueryParams();
+    //$errors = $request->getQueryParams();
     return $this->view->render($response, 'auth.html', ['errors' => $errors]);
 })->setName('auth')->add(new ControlMiddleware());
 
@@ -22,4 +22,6 @@ $app->post('/auth/registration', "AuthController:registration")->add(new Control
 
 $app->post('/auth/login', "AuthController:login")->add(new ControlMiddleware());
 
-//$app->get('/auth', "HelloController:hello")->add(new AuthMiddleware());
+$app->get('/profile', "ProfileController:renderProfile")->add(new AuthMiddleware());
+
+$app->get('/auth/logout', "AuthController:logout");

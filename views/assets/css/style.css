@@ -66,7 +66,7 @@ button{
     padding: 5px 0;
 }
 
-.auth-btn:last-child{
+.auth-btn:last-child:not(#sign-out-btn){
     padding-left: 10px;
     border-left: 1px solid #fff; 
     margin-right: 0;
@@ -75,6 +75,9 @@ button{
 .main-content{
     flex-grow: 1;
     background-color: rgb(244, 246, 247);
+}
+
+.authorization{
     display: flex;
     align-items: center;
     justify-content: center;

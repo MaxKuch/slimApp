@@ -1,0 +1,24 @@
+{% extends 'templates/main.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <header class="header">
+        <div class="container">
+            <div class="header__wrap">
+                <img src ="views/assets/img/logo.svg" class="logo"></img>
+                <div class="auth-btns">
+                    <button class="auth-btn" id= "sign-out-btn">Sign out</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="main-content profile">
+        <div class="container">
+            <h1>Hello, {{username}}</h1>
+            <h3>Your id: {{session_id}}</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

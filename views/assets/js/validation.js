@@ -10,19 +10,21 @@ $('.registration-form .form__button').click(function(e){
         $.ajax({
             url: 'auth/registration',
             type: 'POST',
-            dataType: 'text',
+            dataType: "json",
             data:{
                 username: username,
                 email: email,
                 password: password
             },
-            success(data){
+            error: function(jqXHR){
                 $('.errors').html('')
                 $('.error').html('')
-                if(data){
-                    let error = JSON.parse(data);
-                    $(`#${error.errorTarget}`).html(error.errorMessage)
-                }
+                let error = JSON.parse(jqXHR.responseJSON.exception[0].message)
+                $(`#${error.errorTarget}`).html(error.errorMessage)
+            },
+            success: function(){
+                $('.errors').html('')
+                $('.error').html('')
             }
         })
     }
@@ -37,19 +39,28 @@ $('.login-form .form__button').click(function(e){
         $.ajax({
             url: '/auth/login',
             type: 'POST',
-            dataType: 'text',
+            dataType: "json",
             data:{
                 username: username,
                 password: password
             },
-            success(data){
+            error: function(jqXHR){
                 $('.errors').html('')
                 $('.error').html('')
-                if(data){
-                    let error = JSON.parse(data);
-                    $(`#${error.errorTarget}`).html(error.errorMessage)
-                }
+                let error = JSON.parse(jqXHR.responseJSON.exception[0].message)
+                $(`#${error.errorTarget}`).html(error.errorMessage)
+            },
+            success: function(){
+                $('.errors').html('')
+                $('.error').html('')
             }
         })
     }
+})
+
+$('#sign-out-btn').click(function(e){
+    e.preventDefault()
+    $.ajax({
+        url: '/auth/logout'
+    })
 })

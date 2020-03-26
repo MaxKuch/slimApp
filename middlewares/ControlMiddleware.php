@@ -15,7 +15,7 @@ class ControlMiddleware{
   {
     $cookie = $request->getCookieParams()["ID"];
     if($cookie)
-      return $response->withRedirect('/');
+      return $response->withRedirect('/profile');
     $response = $next($request, $response);
     return $response;
   }
