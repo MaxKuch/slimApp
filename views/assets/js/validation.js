@@ -19,12 +19,13 @@ $('.registration-form .form__button').click(function(e){
             error: function(jqXHR){
                 $('.errors').html('')
                 $('.error').html('')
-                let error = JSON.parse(jqXHR.responseJSON.exception[0].message)
-                $(`#${error.errorTarget}`).html(error.errorMessage)
-            },
-            success: function(){
-                $('.errors').html('')
-                $('.error').html('')
+                if(jqXHR.responseJSON){
+                    let error = JSON.parse(jqXHR.responseJSON.exception[0].message)
+                    $(`#${error.errorTarget}`).html(error.errorMessage)
+                }
+                else{
+                    document.location.reload()
+                } 
             }
         })
     }
@@ -47,12 +48,13 @@ $('.login-form .form__button').click(function(e){
             error: function(jqXHR){
                 $('.errors').html('')
                 $('.error').html('')
-                let error = JSON.parse(jqXHR.responseJSON.exception[0].message)
-                $(`#${error.errorTarget}`).html(error.errorMessage)
-            },
-            success: function(){
-                $('.errors').html('')
-                $('.error').html('')
+                if(jqXHR.responseJSON){
+                    let error = JSON.parse(jqXHR.responseJSON.exception[0].message)
+                    $(`#${error.errorTarget}`).html(error.errorMessage)
+                }
+                else{
+                    document.location.reload()
+                } 
             }
         })
     }
@@ -61,6 +63,9 @@ $('.login-form .form__button').click(function(e){
 $('#sign-out-btn-profile').click(function(e){
     e.preventDefault()
     $.ajax({
-        url: '/auth/logout'
+        url: '/auth/logout',
+        success: function(){
+            document.location.reload()
+        }
     })
 })
