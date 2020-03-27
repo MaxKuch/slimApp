@@ -58,7 +58,7 @@ $('.login-form .form__button').click(function(e){
     }
 })
 
-$('#sign-out-btn').click(function(e){
+$('#sign-out-btn-profile').click(function(e){
     e.preventDefault()
     $.ajax({
         url: '/auth/logout'

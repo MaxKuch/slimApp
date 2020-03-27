@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/views/assets/css/style.css">
+    <link rel="stylesheet" href="/views/assets/css/libs/datatables.min.css">
+</head>
+<body>
+    <div class="admin">
+        {% block navbar %} {% endblock %}
+        <div class="wrapper">
+            <header class="header">
+                <div class="container">
+                    <div class="header__wrap">
+                        <div class="auth-btns">
+                            <a href = "/" class="auth-btn" id= "sign-out-btn-admin">Sign out</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="main-content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    <script src="/views/assets/js/libs/jquery-3.4.1.min.js"></script>
+    <script src="/views/assets/js/libs/datatables.min.js"></script>
+    <script src="/views/assets/js/Modal.js"></script>
+    <script src="/views/assets/js/index.js"></script>
+</body>
+</html>

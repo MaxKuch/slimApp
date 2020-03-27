@@ -17,4 +17,7 @@
         public static function where($field, $param){
             return Manager::table('sessions')->where($field, $param);
         }
+        public static function getTable(){
+            return Manager::table('sessions')->get();
+        }
     }

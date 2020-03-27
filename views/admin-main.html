@@ -1,0 +1,17 @@
+{% extends 'templates/admin.html' %}
+
+{% block navbar %}
+<div class="admin__navbar">
+    <img src ="/views/assets/img/adminLogo.svg" class="logo"></img>
+    <ul class="admin__navbar-list">
+        <li class = "admin__navbar-list-item"><a href="/admin/users-accounts"  class="admin__navbar-list-btn" id="users_accounts">Users accounts</a></li>
+        <li class = "admin__navbar-list-item"><a href="/admin/sessions" class="admin__navbar-list-btn" id="sessions">Sessions</a></li>
+    </ul>
+</div>  
+{% endblock %}
+
+{% block content %}
+    <div class="admin__content">
+            
+    </div>
+{% endblock %}

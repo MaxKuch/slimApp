@@ -25,3 +25,9 @@ $app->post('/auth/login', "AuthController:login")->add(new ControlMiddleware());
 $app->get('/profile', "ProfileController:renderProfile")->add(new AuthMiddleware());
 
 $app->get('/auth/logout', "AuthController:logout");
+
+$app->get('/admin', "AdminController:login");
+
+$app->get('/admin/users-accounts', "AdminController:usersAccounts");
+
+$app->get('/admin/sessions', "AdminController:sessions");

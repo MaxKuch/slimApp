@@ -12,6 +12,9 @@
             Manager::table('users')->insertGetId(['username' => $username, 'email' => $email, 'password' => $password]);
         } 
         public static function where($field, $param){
-            return Manager::table('users')->where($field, $param)->get();
+            return Manager::table('users')->where($field, $param);
+        }
+        public static function getTable(){
+            return Manager::table('users')->get();
         }
     }

@@ -14,7 +14,7 @@ class AuthMiddleware{
         }
         $session = SessionModel::where('session_id', $cookie)->get()->first();
 
-        $response = CookieHelper::addCookie($response, "ID", $session->session_id, 60*60);
+        $response = CookieHelper::addCookie($response, "ID", $session->session_id, 60*60*3);
         $response = $next($request, $response);
         return $response;
     }

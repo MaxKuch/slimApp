@@ -8,3 +8,6 @@ function newModal(btnId, modalId, closeBtn){
 let modalRegistration = newModal("registration-btn", "modal-registration", "modal-registration-close")
 
 let modalLogin = newModal("login-btn", "modal-login", "modal-login-close")
+
+$('#admin_users-table').DataTable();
+$('#admin_sessions-table').DataTable();

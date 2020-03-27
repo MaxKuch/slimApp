@@ -1,0 +1,37 @@
+{% extends 'templates/admin.html' %}
+
+{% block navbar %}
+<div class="admin__navbar">
+    <img src ="/views/assets/img/adminLogo.svg" class="logo"></img>
+    <ul class="admin__navbar-list">
+        <li class = "admin__navbar-list-item active"><a href="#" class="admin__navbar-list-btn" id="users_accounts">Users accounts</a></li>
+        <li class = "admin__navbar-list-item"><a href="/admin/sessions" class="admin__navbar-list-btn" id="sessions">Sessions</a></li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block content %}
+    
+    <div class="admin__content">
+        <table class="admin__table display" id="admin_users-table" >
+            <thead>
+                <tr>
+                    <th>User Id</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <th>{{user.id}}</th>
+                        <th>{{user.username}}</th>
+                        <th>{{user.email}}</th>
+                        <th>{{user.password}}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
