@@ -7,7 +7,7 @@
     <header class="header">
         <div class="container">
             <div class="header__wrap">
-                <img src ="views/assets/img/logo.svg" class="logo"></img>
+                <a href="\"><img src ="/views/assets/img/logo.svg" class="logo"></img></a>
                 <div class="auth-btns">
                     <button class="auth-btn modal-btn" id="login-btn">Login</button>
                     <button class="auth-btn modal-btn" id= "registration-btn">Sign up</button>
@@ -18,11 +18,11 @@
     <div class="main-content authorization">
         <div class="modal" id="modal-login">
             <button class = "modal__close" id = "modal-login-close"><img src="views/assets/img/close-btn.svg"></button>
-            <form class = "form login-form">
+            <form class = "form login-form" id = "login-form">
                 <h3 class="form__title">Login</h3>
                 <div class="form__inputs-group">
-                    <label class="form__label">Username
-                        <input class="form__input" required type="text" name="username">
+                    <label class="form__label">Email
+                        <input class="form__input" required type="text" name="email">
                     </label class="form__label">
                     <span class="error"></span>
                     <label class="form__label">Password
@@ -35,19 +35,23 @@
         </div>
         <div class="modal" id="modal-registration">
             <button class = "modal__close" id = "modal-registration-close"><img src="views/assets/img/close-btn.svg"></button>
-            <form class = "form registration-form">
+            <form class = "form registration-form" id = "registration-form">
                 <h3 class="form__title">Sign up</h3>
                 <div class="form__inputs-group">
-                    <label class="form__label">Username
-                        <input class="form__input" required type="text" name="username">
-                        <span class="error" id = "registration-username-error"></span>
+                    <label class="form__label">Name
+                        <input class="form__input" id="name" type="text" name="name" required>
+                        <span class="error" id = "registration-name-error"></span>
+                    </label>
+                    <label class="form__label">Phone
+                        <input class="form__input" type="text" name="phone" required>
+                        <span class="error" id = "registration-phone-error"></span>
                     </label>
                     <label class="form__label">Email
-                        <input class="form__input" required type="email" name="email">
+                        <input class="form__input" type="email" name="email" required>
                         <span class="error" id = "registration-email-error"></span>
                     </label>
                     <label class="form__label">Password
-                        <input class="form__input" required type="password" name="password">
+                        <input class="form__input" type="password" name="password" required>
                     </label>
                 </div>
                 <button class="form__button" type="submit">Sign up</button>
@@ -55,4 +59,12 @@
         </div>
     </div>
 </div> 
+{% endblock %}
+
+{% block scripts %} 
+<script>
+    userData = {{ user_data | raw}};
+    session = {{ session | raw}};
+</script>
+    
 {% endblock %}

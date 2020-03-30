@@ -10,19 +10,11 @@ use Middlewares\ControlMiddleware;
 //     $errors = $request->getQueryParams();
 //     return $this->view->render('auth.html', array('errors' => $errors));
 // })->setName('auth')->add(new ControlMiddleware()); 
-$app->get('/', function (Request $request, Response $response, array $args)
-{
-    //$errors = $request->getQueryParams();
-    return $this->view->render($response, 'auth.html', ['errors' => $errors]);
-})->setName('auth')->add(new ControlMiddleware());
+$app->get('/', "PageController:renderPage")->setName('auth')->add(new ControlMiddleware());
 
+$app->post('/auth/registration', "AuthController:registration");
 
-
-$app->post('/auth/registration', "AuthController:registration")->add(new ControlMiddleware());
-
-$app->post('/auth/login', "AuthController:login")->add(new ControlMiddleware());
-
-$app->get('/profile', "ProfileController:renderProfile")->add(new AuthMiddleware());
+$app->post('/auth/login', "AuthController:login");
 
 $app->get('/auth/logout', "AuthController:logout");
 

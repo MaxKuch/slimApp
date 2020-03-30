@@ -32,6 +32,11 @@ $container['db'] = function ($container) use ($capsule) {
 $container["ProfileController"] = function ($c) {
     return new \Controllers\ProfileController($c);
 };
+
+$container["PageController"] = function ($c) {
+    return new \Controllers\PageController($c);
+};
+
 $container["AuthController"] = function ($c) {
     return new Controllers\AuthController($c);
 };

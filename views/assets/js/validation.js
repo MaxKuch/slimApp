@@ -1,71 +1,40 @@
-$('.form').validate()
 
-$('.registration-form .form__button').click(function(e){
-    e.preventDefault()
-    let username = $('.registration-form input[name="username"]').val()
-    let email = $('.registration-form input[name="email"]').val()
-    let password = $('.registration-form input[name="password"]').val()
-    //alert($('.registration-form').valid())
-    if($('.registration-form').valid()){
-        $.ajax({
-            url: 'auth/registration',
-            type: 'POST',
-            dataType: "json",
-            data:{
-                username: username,
-                email: email,
-                password: password
-            },
-            error: function(jqXHR){
-                $('.errors').html('')
-                $('.error').html('')
-                if(jqXHR.responseJSON){
-                    let error = JSON.parse(jqXHR.responseJSON.exception[0].message)
-                    $(`#${error.errorTarget}`).html(error.errorMessage)
-                }
-                else{
-                    document.location.reload()
-                } 
-            }
-        })
-    }
-})
+$('#registration-form').validate()
 
-$('.login-form .form__button').click(function(e){
-    e.preventDefault()
-    let username = $('.login-form input[name="username"]').val()
-    let password = $('.login-form input[name="password"]').val()
-    //alert($('.login-form').valid())
-    if($('.login-form').valid()){
-        $.ajax({
-            url: '/auth/login',
-            type: 'POST',
-            dataType: "json",
-            data:{
-                username: username,
-                password: password
-            },
-            error: function(jqXHR){
-                $('.errors').html('')
-                $('.error').html('')
-                if(jqXHR.responseJSON){
-                    let error = JSON.parse(jqXHR.responseJSON.exception[0].message)
-                    $(`#${error.errorTarget}`).html(error.errorMessage)
-                }
-                else{
-                    document.location.reload()
-                } 
-            }
-        })
-    }
-})
+$('#login-form').validate()
 
-$('#sign-out-btn-profile').click(function(e){
-    e.preventDefault()
-    $.ajax({
-        url: '/auth/logout',
-        success: function(){
-            document.location.reload()
-        }
-    })
-})
+$.validator.addMethod("laxEmail", function(value, element) {
+    // allow any non-whitespace characters as the host part
+    return this.optional( element ) || /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@(?:\S{1,63})$/.test( value );
+}, 'Please enter valid email');
+$.validator.addMethod("laxNumber", function(value, element) {
+    // allow any non-whitespace characters as the host part
+    return this.optional( element ) || /^[\d\+][\d\(\)\ -]{4,17}[\d\ ]$/.test( value );
+}, 'Please enter valid phone number');
+
+$('#registration-form input[name="name"]').rules("add", {
+    minlength: 2
+});
+
+$('#registration-form input[name="email"]').rules("add", {
+    minlength: 8,
+    laxEmail: true
+});
+
+$('#login-form input[name="email"]').rules("add", {
+    minlength: 8,
+    laxEmail: true
+});
+
+$('#registration-form input[name="phone"]').rules("add", {
+    minlength: 8,
+    laxNumber: true
+});
+
+$('#registration-form input[name="password"]').rules("add", {
+    minlength: 6,
+});
+
+$('#login-form input[name="password"]').rules("add", {
+    minlength: 6,
+});

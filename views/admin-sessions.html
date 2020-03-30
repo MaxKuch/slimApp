@@ -2,7 +2,7 @@
 
 {% block navbar %}
         <div class="admin__navbar">
-            <img src ="/views/assets/img/adminLogo.svg" class="logo"></img>
+            <a href="\"><img src ="/views/assets/img/adminLogo.svg" class="logo"></img></a>
             <ul class="admin__navbar-list">
                 <li class = "admin__navbar-list-item"><a href="/admin/users-accounts"  class="admin__navbar-list-btn" id="users_accounts">Users accounts</a></li>
                 <li class = "admin__navbar-list-item active"><a href="#" class="admin__navbar-list-btn" id="sessions">Sessions</a></li>
@@ -15,22 +15,22 @@
         <table class="admin__table display" id="admin_sessions-table">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Session Id</th>
-                    <th>User</th>
+                    <th>Session id</th>
+                    <th>Session hash</th>
                     <th>Ip Address</th>
+                    <th>Email</th>
                     <th>Is Loggined</th>
                 </tr>
             </thead>
             <tbody>
                 {% for session in sessions %}
                     <tr>
-                        <th>{{session.id}}</th>
                         <th>{{session.session_id}}</th>
-                        <th>{{session.user}}</th>
-                        <th>{{session.ip__addr}}</th>
+                        <th>{{session.session_hash}}</th>
+                        <th>{{session.user_ip}}</th>
+                        <th>{{session.email ?: 'None'}}</th>
                         <th>
-                            {{session.isLogin ? 'Logged in' : 'Not logged in'}}
+                            {{session.login_flag ? 'Logged in' : 'Not logged in'}}
                         </th>
                     </tr>
                 {% endfor %}

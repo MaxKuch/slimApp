@@ -1,6 +1,7 @@
 <?php
     namespace Controllers;
     use Models\UserModel;
+    use Models\SessionModel;
     use Controllers\Controller;
     use Slim\Http\Request;
     use Slim\Http\Response;
@@ -10,7 +11,7 @@
     use Illuminate\Database\Capsule\Manager;
     class AuthController extends Controller{
         private $userModel;
-        private $cookieName = "ID";
+        private $cookieName = "HASH";
         public function __construct($di){
             parent::__construct($di);
             $this->userModel = new UserModel();
@@ -18,50 +19,51 @@
 
         public function login(Request $request, Response $response, $args){
             $post = $request->getParsedBody();
-            $username = $post['username'];
-            $password = UserHelper::getPasswordHash($username, $post['password']);
-            if(!UserHelper::isUserHave('username',$username))
-                $errors = array('errorMessage' => 'wrong username or password', 'errorTarget' => 'login-errors');
-            if(!UserHelper::checkPassword($username, $password))
-                $errors = array('errorMessage' => 'wrong username or password', 'errorTarget' => 'login-errors');
+            $email = $post['email'];
+            $password = UserHelper::getPasswordHash($post['password']);
+            $session_hash = $post['session_hash'];
+            if(!UserHelper::isUserHave('email',$email))
+                $errors = array('errorMessage' => 'wrong email or password', 'errorTarget' => 'login-errors');
+            if(!UserHelper::checkPassword($email, $password)){
+                $errors = array('errorMessage' => "wrong email or password", 'errorTarget' => 'login-errors');
+            }
             if(isset($errors)){
                 throw new \Exception(json_encode($errors));
                 die();
             }
-            $session      = \Helpers\SessionHelper::setSession($username);
-            $response = CookieHelper::addCookie($response,$this->cookieName, $session->session_id);
-            $response = $response->withRedirect('/profile');
-            return $response;
+            SessionModel::where('session_hash', $session_hash)->update(['login_flag' => true, 'email' => $email]);
+            return $response->withRedirect('/');
         }
 
         public function registration(Request $request, Response $response, $args){
             $post = $request->getParsedBody();
-            $username = $post['username'];
+            $name = $post['name'];
+            $phone = $post['phone'];
             $email    = $post['email'];
-            $password = UserHelper::getPasswordHash($username, $post['password']);
-            if(UserHelper::isUserHave('username',$username)){
+            $session_hash = $post['session_hash'];
+            $password = UserHelper::getPasswordHash($post['password']);
+            if(UserHelper::isUserHave('name',$name)){
                 $errors = array('errorMessage' => 'such username already exists', 'errorTarget' => 'registration-username-error');
             }
             if(UserHelper::isUserHave('email',$email)){
                 $errors = array('errorMessage' => 'user with such email already exists', 'errorTarget' => 'registration-email-error');
             }
+            if(UserHelper::isUserHave('phone',$phone)){
+                $errors = array('errorMessage' => 'user with such phone already exists', 'errorTarget' => 'registration-phone-error');
+            }
             if(isset($errors)){
                 throw new \Exception(json_encode($errors));
                 die();
             }
-            $newUser = new UserModel();
-            $newUser->username = $username;
-            $newUser->email    = $email;
-            $newUser->password = $password;
-            $newUser->save();
-            $session      = SessionHelper::setSession($username);
-            $response = CookieHelper::addCookie($response, $this->cookieName, $session->session_id);
-            return $response->withRedirect('/profile');
+            $user_data = ['name' => $name, 'email' => $email, 'phone' => $phone, 'password' => $password];
+            UserModel::save($user_data);
+            SessionModel::where('session_hash', $session_hash)->update(['login_flag' => true, 'email' => $email]);
+            return $response->withRedirect('/');
         }
 
         public function logout(Request $request, Response $response, $args){
             $cookie = $request->getCookieParams()[$this->cookieName];
-            CookieHelper::deleteCookie($response, $this->cookieName);
+            CookieHelper::deleteCookie($response, $this->cookieName, '', -60*60*3);
             SessionHelper::closeSession($cookie);
             return $response->withRedirect('/');
         }

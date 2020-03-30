@@ -11,3 +11,6 @@ let modalLogin = newModal("login-btn", "modal-login", "modal-login-close")
 
 $('#admin_users-table').DataTable();
 $('#admin_sessions-table').DataTable();
+
+var userData = {}
+var session = {}
