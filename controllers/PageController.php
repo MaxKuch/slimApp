@@ -14,6 +14,14 @@ class PageController extends Controller{
         parent::__construct($di);
     }
 
+    /**
+     * Метод отображает главную страницу и передает информацию о пользователе и сессии
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response $response
+     */
+
     public function renderPage(Request $request, Response $response, $args){
         $user_data = $request->getAttribute('user_data');
         $session = $request->getAttribute('session');

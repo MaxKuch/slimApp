@@ -12,10 +12,19 @@
     class AuthController extends Controller{
         private $userModel;
         private $cookieName = "HASH";
+
         public function __construct($di){
             parent::__construct($di);
             $this->userModel = new UserModel();
         }
+
+        /**
+         * Вход в аккаунт
+         * @param Request $request
+         * @param Response $response
+         * @param array $args
+         * @return Response $response
+         */
 
         public function login(Request $request, Response $response, $args){
             $post = $request->getParsedBody();
@@ -34,6 +43,14 @@
             SessionModel::where('session_hash', $session_hash)->update(['login_flag' => true, 'email' => $email]);
             return $response->withRedirect('/');
         }
+
+        /**
+         * Регистрация аккаунта
+         * @param Request $request
+         * @param Response $response
+         * @param array $args
+         * @return Response $response
+         */
 
         public function registration(Request $request, Response $response, $args){
             $post = $request->getParsedBody();
@@ -60,6 +77,14 @@
             SessionModel::where('session_hash', $session_hash)->update(['login_flag' => true, 'email' => $email]);
             return $response->withRedirect('/');
         }
+
+        /**
+         * Выход из аккаунта
+         * @param Request $request
+         * @param Response $response
+         * @param array $args
+         * @return Response $response
+         */
 
         public function logout(Request $request, Response $response, $args){
             $cookie = $request->getCookieParams()[$this->cookieName];

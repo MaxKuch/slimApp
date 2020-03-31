@@ -5,6 +5,7 @@
         protected $di;
         protected $view;
         protected $router;
+
         public function __construct($di){
             $this->di = $di;
             $this->view = $this->di->get('view');
