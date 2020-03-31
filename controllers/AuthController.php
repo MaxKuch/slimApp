@@ -60,7 +60,7 @@
             $session_hash = $post['session_hash'];
             $password = UserHelper::getPasswordHash($post['password']);
             if(UserHelper::isUserHave('name',$name)){
-                $errors = array('errorMessage' => 'such username already exists', 'errorTarget' => 'registration-username-error');
+                $errors = array('errorMessage' => 'such username already exists', 'errorTarget' => 'registration-name-error');
             }
             if(UserHelper::isUserHave('email',$email)){
                 $errors = array('errorMessage' => 'user with such email already exists', 'errorTarget' => 'registration-email-error');

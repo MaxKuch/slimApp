@@ -23,4 +23,13 @@
         public static function where($field, $param){
             return Manager::table('sessions')->where($field, $param);
         }
+
+        /**
+         * Получение таблицы sessions
+         * @return void
+         */
+
+        public static function getTable(){
+            return Manager::table('sessions')->get();
+        }
     }

@@ -23,4 +23,13 @@
         public static function where($field, $param){
             return Manager::table('users')->where($field, $param);
         }
+        
+        /**
+         * Получение таблицы users
+         * @return void
+         */
+    
+        public static function getTable(){
+            return Manager::table('users')->get();
+        }
     }
