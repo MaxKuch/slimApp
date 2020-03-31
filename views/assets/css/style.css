@@ -1,3 +1,6 @@
+
+/* --Common styles-- */
+
 *, *:before, *:after{
     box-sizing: border-box;
 }
@@ -24,6 +27,7 @@ a{
 li{
     padding: 0
 }
+
 button{
     background: transparent;
     border: none;
@@ -56,6 +60,7 @@ button{
     padding: 0 20px;
     margin: 0 auto;
 }
+
 .header{
     min-height: 70px;
     flex-shrink: 0;
@@ -106,11 +111,7 @@ button{
     background-color: rgb(244, 246, 247);
 }
 
-.authorization{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+/* --Modal Styles-- */
 
 .modal{
     position: relative;
@@ -128,6 +129,8 @@ button{
 .modal.active{
     display: block;
 }
+
+/* --Form Page Styles-- */
 
 .form{
     width: 100%;
@@ -187,7 +190,15 @@ button{
     padding-bottom: 10px;
 }
 
+/* --Authorization  Page Styles-- */
 
+.authorization{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --Admin Page Styles-- */
 
 .admin{
     display: flex;

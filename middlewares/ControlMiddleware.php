@@ -7,14 +7,7 @@ use Models\SessionModel;
 use Helpers\SessionHelper;
 use Helpers\CookieHelper;
 class ControlMiddleware{
-/**
- * Посредник не пускает залогиненых пользователей, на страницу авторизации и т.п.
- *
- * @param Request $request
- * @param Response $response
- * @param [type] $next
- * @return void
- */
+
   public function __invoke(Request $request, Response $response, $next)
   {
     $cookie = $request->getCookieParams()["HASH"];

@@ -8,7 +8,6 @@ $.validator.addMethod("laxEmail", function(value, element) {
     return this.optional( element ) || /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@(?:\S{1,63})$/.test( value );
 }, 'Please enter valid email');
 $.validator.addMethod("laxNumber", function(value, element) {
-    // allow any non-whitespace characters as the host part
     return this.optional( element ) || /^[\d\+][\d\(\)\ -]{4,17}[\d\ ]$/.test( value );
 }, 'Please enter valid phone number');
 

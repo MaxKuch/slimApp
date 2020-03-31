@@ -18,8 +18,6 @@ class PageController extends Controller{
         $user_data = $request->getAttribute('user_data');
         $session = $request->getAttribute('session');
         $login_flag = $request->getAttribute('login_flag');
-        //var_dump($user_data);
-        //var_dump($session);
         $this->view->render($response, 'index.html', ['user_data' => json_encode($user_data), 'session' => json_encode($session), 'login_flag' => json_encode($login_flag)]);
         return $response;
     }

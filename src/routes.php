@@ -5,11 +5,7 @@ use Middlewares\AuthMiddleware;
 use Middlewares\CheckMiddleware;
 use Middlewares\AdminCheckMiddleware;
 use Middlewares\ControlMiddleware;
-// $app->get('/auth', function (Request $request, Response $response, array $args)
-// {
-//     $errors = $request->getQueryParams();
-//     return $this->view->render('auth.html', array('errors' => $errors));
-// })->setName('auth')->add(new ControlMiddleware()); 
+
 $app->get('/', "PageController:renderPage")->setName('auth')->add(new ControlMiddleware());
 
 $app->post('/auth/registration', "AuthController:registration");
